@@ -2,7 +2,7 @@ import functools
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
-# ACTIONS
+# ADDONS
 
 import addons.commands.commands as com
 FREAKIFY = functools.partial(com.rename, message=None, text="𝓯𝓻𝓮𝓪𝓴𝔂", type=com.RenameType.PREPEND, success="You have been 𝓯𝓻𝓮𝓪𝓴𝓲𝓯𝓲𝓮𝓭, enjoy", failure="I am afraid you are too freaky already" )

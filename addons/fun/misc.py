@@ -12,7 +12,7 @@ from addons.fun import leaderboard
 
 # MARRY ME
 
-spouse_role : str = "HAPPILY MARRIED"
+spouse_role : str
 
 async def marry(message : discord.Message):
 
@@ -35,21 +35,18 @@ async def marry(message : discord.Message):
     except:
         await message.reply(f"Nah")
 
-
-
-
 # ////////////////////////////////////////////////////////////////////////////////////
 
 # TIMEOUT
 
-timeout_exceptions = [760164196125507605, ]# user ids of users that cant be timed out
-timeout_ignore_spouse = True # if true, will not time out spouse
-timeout_exception_message : str = "NICE TRY STUPID" # Message sent when someone triggers an exception
+timeout_exceptions = []
+timeout_ignore_spouse : bool
+timeout_exception_message : str
 
-timeout_random_range = (1, 3) # the range of numbers that a random timeout can be
-timeout_targeted_range = (5, 8) # the range of numbers that a targeted timeout can be
-timeout_self_target_time = 10
-timeout_multiplier = 2 # the punishment multiplier for timeing out
+timeout_random_range = (1, 3)
+timeout_targeted_range = (5, 8)
+timeout_self_target_time : int
+timeout_multiplier : int
 
 async def user_timeout(message : discord.Message, client : discord.Client):
 
@@ -150,7 +147,7 @@ async def nerd(message : discord.Message):
 
 # CHEESE TOUCH
 
-cheese_touch_role = "CHEESE TOUCH"
+cheese_touch_role : str
 
 async def cheese_touch(message : discord.Message):
     target : discord.Member = None
@@ -201,10 +198,10 @@ async def cheese_touch(message : discord.Message):
 
 # PEBBLE
 
-pebble_key : str = "pebbles"
-pebble_key_count_key : str = "count"
-pebbles_have_cost : bool = True
-pebble_cost : int = 10
+pebble_key : str
+pebble_key_count_key : str
+pebbles_have_cost : bool
+pebble_cost : int
 
 pebble_types = {
     'Common': ["blue_circle", "red_circle", "yellow_circle", "green_circle", "purple_circle"],

@@ -30,10 +30,10 @@ def add_deaths(message: discord.Message, points: int):
 
 # RUSSIAN ROULETTE
 
-roulette_count_points : bool = True
-roulette_count_deaths: bool = True
-roulette_kick : bool = True
-roulette_rejoin : bool = True
+roulette_count_points : bool
+roulette_count_deaths: bool
+roulette_kick : bool
+roulette_rejoin : bool
 
 async def roulette(x : int, y : int, points : int,  message : discord.Message):
     survived : bool = random.randint(1, y) > x
@@ -109,9 +109,9 @@ suits = ['heart', 'diamond', 'spade', 'club']
 ranks = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']
 deck = []
 
-cards_drawn : int = 4
-card_images_folder : str = "files/img/cards"
-cards_points_enabled : bool = True
+cards_drawn : int
+card_images_folder : str
+cards_points_enabled : bool
 
 poker_hand_points = {
     'none' : -10,
@@ -186,7 +186,9 @@ async def unoker(message : discord.Message):
 
     text : str = "PLAYING UNOKER:\n"
     text += f"# {hand_type}\n"
-    text += f"You earned : {hand_points} Points"
+    if cards_points_enabled:
+        add_points(message, hand_points)
+        text += f"You earned : {hand_points} Points"
 
     # SORT
     suit_order = {'heart': 1, 'diamond': 2, 'spade': 3, 'club': 4}  # Define suit order
@@ -207,7 +209,6 @@ async def unoker(message : discord.Message):
         combined_image.paste(card_img, (i * width, 0))
 
     combined_image.save(card_images_folder + '/a.png')
-    add_points(message, hand_points)
     try:
         await leaderboard.update_leaderboard(message)
         await message.reply(text, file=discord.File(card_images_folder + '/a.png'))

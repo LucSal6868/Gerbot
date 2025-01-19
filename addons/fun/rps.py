@@ -241,9 +241,9 @@ possible_games : dict = {
     ("shoe", "cheeseburger") : "You think that will stop me from eating it?",
 }
 
-rps_track_wins : bool = True # keep track of wins
-rps_points : bool = True # use conventional point system
-rps_win_points : int = 10 # points awarded
+rps_track_wins : bool
+rps_points : bool
+rps_win_points : int
 
 # ////////////////////////////////////////////////////////////////////////////////////
 

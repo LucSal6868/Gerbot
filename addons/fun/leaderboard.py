@@ -4,13 +4,13 @@ from addons.fun import games
 from addons.fun import rps
 from addons.fun import misc
 
-leaderboard_enabled : bool = True
-leaderboard_channel_name = "leaderboard" # The name of the channel the leaderboard will be in
-leaderboard_users_displayed = 5 # Number of users displayed for each rank
+leaderboard_enabled : bool
+leaderboard_channel_name : str
+leaderboard_users_displayed : int
 
-leaderboard_user_points = True # Display top user by points in leaderboard
-leaderboard_user_deaths = True # Display top user by deaths in leaderboard
-leaderboard_pebbles = True # Display top user by pebbles
+leaderboard_user_points : bool
+leaderboard_user_deaths : bool
+leaderboard_pebbles: bool
 
 # ////////////////////////////////////////////////////////////////////////////////////
 

@@ -11,7 +11,6 @@ async def random_user(message : discord.Message):
     random_user = random.choice(all_users)
     await message.channel.send(f"<@{random_user.id}>")
 
-
 # ////////////////////////////////////////////////////////////////////////////////////
 
 # RENAME
