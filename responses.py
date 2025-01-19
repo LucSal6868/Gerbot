@@ -1,5 +1,7 @@
 import functools
 
+import discord
+
 # ////////////////////////////////////////////////////////////////////////////////////
 
 # ADDONS
@@ -67,6 +69,7 @@ responses = {
     ("hello", "hi", "hey"): "HELLO",
     ("thank you", "thanks", "ty"): ("You are welcome", "You owe me now"),
     "er ": "I barely  know 'er",
+    "duck" : discord.File("files/img/example.webp"),
 
 
     ("help", "commands") : """
