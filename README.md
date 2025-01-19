@@ -1,8 +1,6 @@
 # Gerbot
 The easy-to-use and modular Python template for building Discord bots.
 
-//////////////////////////////////////////////////////////////////////
-
 ## How to Edit
 - Edit responses in `responses.py`
 - Edit settings in `config.py`
