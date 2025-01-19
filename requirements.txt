@@ -1,0 +1,4 @@
+python-dotenv
+audioop-lts
+discord
+pillow
