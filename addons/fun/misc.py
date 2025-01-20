@@ -161,7 +161,7 @@ async def cheese_touch(message : discord.Message):
         return
 
     if target.bot:
-        await message.reply("no.")
+        await message.reply("I'm afraid I can't do that, Dave")
         return
 
     if target.id == message.author.id:
