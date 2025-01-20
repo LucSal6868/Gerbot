@@ -156,7 +156,9 @@ def evaluate_hand(ranks_dict, suits_dict, play):
     return 'none'
 
 async def unoker(message : discord.Message):
+    text: str = "PLAYING UNOKER:\n"
     if len(deck) < cards_drawn:
+        text+="(reshuffling)\n"
         deck.clear()
         new_deck = [Card(rank, suit) for rank in ranks for suit in suits]
         deck.extend(new_deck)
@@ -184,7 +186,7 @@ async def unoker(message : discord.Message):
     hand_type = evaluate_hand(ranks_dict, suits_dict, play)
     hand_points = poker_hand_points[hand_type]
 
-    text : str = "PLAYING UNOKER:\n"
+
     text += f"# {hand_type}\n"
     if cards_points_enabled:
         add_points(message, hand_points)
