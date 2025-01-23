@@ -16,13 +16,21 @@ else
     exit 1
 fi
 
+
+# PY VERSION
+PYTHON_CMD="python"
+if command -v python3 &>/dev/null; then
+    PYTHON_CMD="python3"
+fi
+
+
 # SET DIRECTORY
 cd "$(dirname "$0")"
 
 # CHECK IF VENV EXISTS
 if [ ! -d "$VENV_DIR" ]; then
   echo "Creating virtual environment..."$'\n'
-  python -m venv $VENV_DIR
+  $PYTHON_CMD -m venv $VENV_DIR
 fi
 
 # LINUX

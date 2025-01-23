@@ -1,9 +1,10 @@
 import discord
 import random
+import re
+from PIL import Image
 
 from addons.fun import leaderboard
 import data.json_manager as json_manager
-from PIL import Image
 
 
 # ////////////////////////////////////////////////////////////////////////////////////
@@ -123,6 +124,7 @@ poker_hand_points = {
     'Full House' : 200,
     'Four of a Kind' : 250,
     'Straight Flush': 500,
+    'Five of a Kind': 500,
     'Royal Flush' : 5000
 }
 
@@ -138,6 +140,8 @@ def evaluate_hand(ranks_dict, suits_dict, play):
             return 'Royal Flush'
         return 'Straight Flush'
 
+    if 5 in ranks_dict.values():
+        return 'Five of a Kind'
     if 4 in ranks_dict.values():
         return 'Four of a Kind'
     if 3 in ranks_dict.values() and 2 in ranks_dict.values():
@@ -155,7 +159,24 @@ def evaluate_hand(ranks_dict, suits_dict, play):
 
     return 'none'
 
+
+def no_numbers(text: str) -> str:
+    number_map = {
+        '2': 'two', '3': 'three', '4': 'four', '5': 'five',
+        '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine',
+        '10': 'ten'
+    }
+    def replace(match):
+        number = match.group(0)
+        return number_map.get(number, number)
+
+    return re.sub(r'\b\d+\b', replace, text)
+
+
 async def unoker(message : discord.Message):
+
+    message.content = no_numbers(message.content)
+
     text: str = "PLAYING UNOKER:\n"
     if len(deck) < cards_drawn:
         text+="(reshuffling)\n"
