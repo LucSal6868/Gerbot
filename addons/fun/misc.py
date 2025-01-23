@@ -285,7 +285,7 @@ async def pebble(message : discord.Message):
         data: dict = json_manager.get_json_var(message.channel.guild.id, games.points_key) or {}
         user_points = data.get(str(message.author.id), 0) - pebble_cost
 
-        if user_points <= 0:
+        if user_points < 0:
             try:
                 await message.reply(f"YOU ARE TOO POOR.\n\nTHE PRICE OF A PEBBLE IS {pebble_cost} POINTS")
             except:
