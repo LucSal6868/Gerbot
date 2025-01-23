@@ -7,5 +7,5 @@ The modular discord bot
 - Addon example found in `addons/example.py`
 
 ## How to Run
-- Create file `.env` with `#DISCORD_TOKEN="BOT DISCORD TOKEN"`
+- Create file `.env` with `DISCORD_TOKEN="YOUR TOKEN"` inside with your bot token
 - Execute `run.sh` to run bot
