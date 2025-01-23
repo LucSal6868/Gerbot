@@ -67,7 +67,6 @@ responses = {
     # RESPONSES
 
     ("hello", "hi", "hey"): "HELLO",
-    "er ": "I barely  know 'er",
     "time" : ("its gerbin time!!!!", "its gerbin time", "it's-a gerbin time", "it is the time to gerb", "its gerbin time!!1!", "gerbin time"),
     ("thank you", "thanks", "ty"): (
         "You owe me now",
