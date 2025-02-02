@@ -1,8 +1,5 @@
 import discord
 from data import json_manager
-from addons.fun import games
-from addons.fun import rps
-from addons.fun import misc
 
 leaderboard_enabled : bool
 leaderboard_channel_name : str
@@ -18,6 +15,9 @@ async def update_leaderboard(message : discord.Message):
 
     if not leaderboard_enabled:
         return
+
+    from addons.fun import games
+    from addons.fun import misc
 
     # ---------------------------------------------------------------------------
 

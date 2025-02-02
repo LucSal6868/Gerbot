@@ -5,7 +5,7 @@ from PIL import Image
 
 from addons.fun import leaderboard
 import data.json_manager as json_manager
-
+from addons.fun.leaderboard import update_leaderboard
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
@@ -240,6 +240,99 @@ async def unoker(message : discord.Message):
 
 
 
+# ////////////////////////////////////////////////////////////////////////////////////
+
+# POINTS
+
+async def points(message : discord.Message):
+    data: dict = json_manager.get_json_var(message.channel.guild.id, points_key) or {}
+    user_points = data.get(str(message.author.id), 0)
+
+    await message.reply(f"You have {user_points} points!")
+
+# ////////////////////////////////////////////////////////////////////////////////////
+
+pinata_stages = [
+    "Brand new!",
+    "Slightly dented",
+    "A few holes",
+    "Pieces of candy spilling out",
+    "Beginning to tear",
+    "In bad shape",
+    "Almost broken",
+    "SO CLOSE",
+    "COMPLETELY BROKEN, CANDY SPILLS EVERYWHERE"
+]
+
+pinata_hit_odds : float = 0.5
+pinata_user_buffer_num : int = 3
+pinata_user_buffer = []
+pinata_odds : int = 2
+pinata_points = 250
+
+
+pinata_stage : int = 0
+
+async def pinata(message : discord.Message):
+    global pinata_stage
+    global pinata_user_buffer
+    text = "# PIÑATA:\n"
+
+
+    if message.author.id in pinata_user_buffer:
+        text += f"You hit too soon, wait for {pinata_user_buffer.index(message.author.id) + 1} more users to hit\n\n"
+
+        text += "*LAST HIT:* "
+        for i in pinata_user_buffer:
+            text += f"<@{i}>, "
+
+        try:
+            await message.reply(text)
+        except:
+            pass
+        return
+
+
+    # HIT
+    if random.randint(1, pinata_odds) == 1:
+        text += "*YOU HIT*\n\n"
+        pinata_stage += 1
+
+    # MISS
+    else:
+        text += "*YOU MISSED*\n\n"
+
+
+    pinata_user_buffer.append(message.author.id)
+    if len(pinata_user_buffer) > pinata_user_buffer_num:
+        pinata_user_buffer.pop(0)
+
+    # PINATA BORKEN
+    if pinata_stage >= len(pinata_stages) - 1:
+        text += f"# PINATA BROKE"
+        text += f"\n# YOU EARNED {pinata_points} POINTS"
+        pinata_stage = 0
+        pinata_user_buffer = []
+
+        add_points(message, pinata_points)
+        await update_leaderboard(message)
+
+    else:
+
+        text += f"*PINATA IS CURRENTLY : {pinata_stages[pinata_stage]}*"
+
+        text += "\n\n*LAST HIT:* "
+        for i in pinata_user_buffer:
+            text += f"<@{i}>, "
+
+    try:
+        await message.reply(text)
+    except:
+        pass
+
+# ////////////////////////////////////////////////////////////////////////////////////
+
+# ////////////////////////////////////////////////////////////////////////////////////
 # ////////////////////////////////////////////////////////////////////////////////////
 
 # SHOP

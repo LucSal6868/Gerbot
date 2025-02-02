@@ -19,10 +19,6 @@ fi
 
 # PY VERSION
 PYTHON_CMD="python"
-if command -v python3 &>/dev/null; then
-    PYTHON_CMD="python3"
-fi
-
 
 # SET DIRECTORY
 cd "$(dirname "$0")"

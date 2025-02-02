@@ -216,16 +216,16 @@ pebble_types = {
     'BLACK': ["black_circle", "black_large_square", "black_heart", "8ball", "black_cat"]
 }
 pebble_weights= {
-    'Common': 100,
-    'Rare': 25,
-    'Square': 10,
-    'Heart': 10,
-    'Ball': 10,
-    'Fruit': 10,
-    'Animal': 10,
-    'Legendary': 5,
-    'WHITE': 2,
-    'BLACK': 1,
+    'Common': 1000,
+    'Rare': 250,
+    'Square': 100,
+    'Heart': 100,
+    'Ball': 100,
+    'Fruit': 100,
+    'Animal': 100,
+    'Legendary': 50,
+    'WHITE': 20,
+    'BLACK': 10,
 }
 total_weight = sum(pebble_weights.values())
 
@@ -314,5 +314,16 @@ async def pebble(message : discord.Message):
         pass
 
 # ////////////////////////////////////////////////////////////////////////////////////
+
+
+lock_in_time : int = 60
+
+async def lock_in(message : discord.Message):
+    try:
+        await message.author.timeout(discord.utils.utcnow() + datetime.timedelta(minutes=lock_in_time), reason="locked in")
+        await message.channel.send(f"<@{message.author.id}> is locking in for {lock_in_time} minutes.")
+    except:
+        await message.reply(f"You are too powerful to be muted")
+
 
 # ////////////////////////////////////////////////////////////////////////////////////

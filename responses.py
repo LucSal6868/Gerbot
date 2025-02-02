@@ -16,6 +16,8 @@ SHOTGUN_ROULETTE = functools.partial(games.roulette, x=1, y=2, points=50, messag
 GRENADE_ROULETTE = functools.partial(games.roulette, x=1, y=1, points=0, message=None)
 NERF_ROULETTE = functools.partial(games.roulette, x=1, y=100, points=1, message=None)
 UNOKER = functools.partial(games.unoker, message=None)
+POINTS = functools.partial(games.points, message=None)
+PINATA = functools.partial(games.pinata, message=None)
 
 import addons.fun.rps as rps
 ROCK_PAPER_SCISSORS = functools.partial(rps.rock_paper_scissors, message=None)
@@ -26,6 +28,7 @@ NERD = functools.partial(misc.nerd, message=None)
 THE_CHEESE_TOUCH = functools.partial(misc.cheese_touch, message=None)
 MARRY_ME = functools.partial(misc.marry, message=None)
 PEBBLE = functools.partial(misc.pebble, message=None)
+LOCK_IN = functools.partial(misc.lock_in, message=None)
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,17 +59,20 @@ responses = {
      'cheeseburger') : ROCK_PAPER_SCISSORS,
 
     "freak": FREAKIFY,
+    "lock me in" : LOCK_IN,
     "nerd": NERD,
     "touch" : THE_CHEESE_TOUCH,
     "marry me" : MARRY_ME,
     ("pebble", "gift") : PEBBLE,
     ("unoker", "poker") : UNOKER,
+    "points" : POINTS,
+    ("pinata", "piñata") : PINATA,
 
     # /////////////////////////////////////////////////////////
 
     # RESPONSES
 
-    ("hello", "hi", "hey"): "HELLO",
+    ("hello"): "HELLO",
     "time" : ("its gerbin time!!!!", "its gerbin time", "it's-a gerbin time", "it is the time to gerb", "its gerbin time!!1!", "gerbin time"),
     ("thank you", "thanks", "ty"): (
         "You owe me now",
@@ -226,9 +232,11 @@ responses = {
     **Mute(@)** : timeout @user and self
     
     # GAMES:
+    **Points** : Number of points
     **Roulette(russian, shotgun, grenade, nerf)** : x in y chance to be kicked from server for points
     **Rock, Paper, Scissors, etc** : Self explanatory
     **Unoker(RANK + SUIT)** : Poker with 1 card
+    **Pinata** : Hit the pinata
     
     # OTHER:
     **Freak** : Freakify self
@@ -242,8 +250,24 @@ responses = {
     **fun fact** : gerbot approved fun fact
     **pro tip** : gerbot approved pro tip
     **motivate** : gerbot may or may not say something motivational
+    
+    **Lock in** : Avoid all distractions
     """,
 
+    ("update"): """
+    # NEW COMMANDS:
+    **Points** : Number of points
+    **Lock in** : Avoid all distractions
+    **Pinata** : Hit the pinata
+    
+    # CHANGELOG:
+    - Fixed that one HELLO bug
+    - Users with 10 points can buy pebbles
+    - Can now see points with points command
+    - Can now lock in
+    - added piniata tatyatyadfiadsjnfisad
+    
+    """,
 
     # /////////////////////////////////////////////////////////
 
