@@ -4,3 +4,4 @@ PyNaCl
 audioop-lts
 discord
 pillow
+faker

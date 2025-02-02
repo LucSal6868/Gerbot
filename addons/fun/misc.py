@@ -327,3 +327,56 @@ async def lock_in(message : discord.Message):
 
 
 # ////////////////////////////////////////////////////////////////////////////////////
+
+import faker
+
+async def doxx(message : discord.Message):
+    fake = faker.Faker()
+
+    ip = f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"
+    lat = round(random.uniform(-90, 90), 4)
+    lon = round(random.uniform(-180, 180), 4)
+    ipv6 = f"fe80::{random.randint(0, 65535):x}:{random.randint(0, 65535):x}:{random.randint(0, 65535):x}:{random.randint(0, 65535):x}"
+    mac = ':'.join([''.join([random.choice('0123456789ABCDEF') for _ in range(2)]) for _ in range(6)])
+    dns = f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"
+    alt_dns = f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"
+    gateway = f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"
+    subnet = f"255.255.{random.randint(0, 255)}.{random.randint(0, 255)}"
+    open_ports = f"{random.randint(1, 65535)},{random.randint(1, 65535)}"
+    hops = f"192168.0.1 192168.1.1 {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'} host-{random.randint(1, 255)}.{random.randint(1, 255)}.ucom.com {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}"
+    services = [
+        f"[HTTP] {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:80=>{f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:80",
+        f"[HTTP] {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:443=>{f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:443",
+        f"[UDP] {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:788=>{f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:6557",
+        f"[TCP] {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:67891=>{f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:345",
+        f"[TCP] {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:7777=>{f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:7778",
+        f"[TCP] {f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:898=>{f'{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}'}:667"
+    ]
+
+    info = f"""
+IP: {ip}
+N: {lat}
+W: {lon}
+SS Number: {random.randint(1000000000000000, 9999999999999999)}
+IPv6: {ipv6}
+Enabled DMZ: {f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"}
+MAC: {mac}
+ISP: {fake.company()}
+Universal DNS: {dns}
+ALT DNS: {alt_dns}
+Dlink WAN: {f"{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}.{random.randint(1, 255)}"}
+GATEWAY: {gateway}
+SUBNET MASK: {subnet}
+UDP OPEN PORTS: {open_ports}
+TCP OPEN PORTS: {open_ports}
+ROUTER VENDOR: {fake.company()}
+DEVICE VENDOR: WIN32-X
+CONNECTION TYPE: Ethernet
+ICMP HOPS: {hops}
+TOTAL HOPS: 8
+ACTIVE SERVICES: {', '.join(services)}
+EXTERNAL MAC: {':'.join([''.join([random.choice('0123456789ABCDEF') for _ in range(2)]) for _ in range(6)])}
+MODEM JUMPS: {random.randint(1, 100)}
+    """
+
+    await message.channel.send(info)

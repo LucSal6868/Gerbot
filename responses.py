@@ -29,6 +29,7 @@ THE_CHEESE_TOUCH = functools.partial(misc.cheese_touch, message=None)
 MARRY_ME = functools.partial(misc.marry, message=None)
 PEBBLE = functools.partial(misc.pebble, message=None)
 LOCK_IN = functools.partial(misc.lock_in, message=None)
+DOXX = functools.partial(misc.doxx, message=None)
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
@@ -67,6 +68,7 @@ responses = {
     ("unoker", "poker") : UNOKER,
     "points" : POINTS,
     ("pinata", "piñata") : PINATA,
+    "doxx" : DOXX,
 
     # /////////////////////////////////////////////////////////
 
@@ -250,6 +252,8 @@ responses = {
     **fun fact** : gerbot approved fun fact
     **pro tip** : gerbot approved pro tip
     **motivate** : gerbot may or may not say something motivational
+    **doxx** : Win any argument
+    **update** : See changelog and newest commands
     
     **Lock in** : Avoid all distractions
     """,
@@ -259,6 +263,7 @@ responses = {
     **Points** : Number of points
     **Lock in** : Avoid all distractions
     **Pinata** : Hit the pinata
+    **doxx** : Win any argument
     
     # CHANGELOG:
     - Fixed that one HELLO bug
@@ -266,6 +271,7 @@ responses = {
     - Can now see points with points command
     - Can now lock in
     - added piniata tatyatyadfiadsjnfisad
+    - can now doxx people you dont like
     
     """,
 
