@@ -28,6 +28,7 @@ NERD = functools.partial(misc.nerd, message=None)
 THE_CHEESE_TOUCH = functools.partial(misc.cheese_touch, message=None)
 MARRY_ME = functools.partial(misc.marry, message=None)
 PEBBLE = functools.partial(misc.pebble, message=None)
+COLLECTION = functools.partial(misc.collection, message=None)
 LOCK_IN = functools.partial(misc.lock_in, message=None)
 DOXX = functools.partial(misc.doxx, message=None)
 
@@ -65,6 +66,7 @@ responses = {
     "touch" : THE_CHEESE_TOUCH,
     "marry me" : MARRY_ME,
     ("pebble", "gift") : PEBBLE,
+    ("collection") : COLLECTION,
     ("unoker", "poker") : UNOKER,
     "points" : POINTS,
     ("pinata", "piñata") : PINATA,
@@ -247,8 +249,8 @@ responses = {
     **Nerd(reply)** : NeRD MeSSaGe
     **Touch(@)** : Give somene the cheese touch 
     **Marry me** : Become married (timeout immunity)
-    **Pebble** : Check pebble collection
     **Pebble(@)** : Gift someone a pebble for points
+    **Collection** : View a users pebbles
     **fun fact** : gerbot approved fun fact
     **pro tip** : gerbot approved pro tip
     **motivate** : gerbot may or may not say something motivational
@@ -264,6 +266,7 @@ responses = {
     **Lock in** : Avoid all distractions
     **Pinata** : Hit the pinata
     **doxx** : Win any argument
+    **Collection** : view a users pebbles
     
     # CHANGELOG:
     - Fixed that one HELLO bug
@@ -272,6 +275,7 @@ responses = {
     - Can now lock in
     - added piniata tatyatyadfiadsjnfisad
     - can now doxx people you dont like
+    - Collection and pebble now separate commands
     
     """,
 
@@ -320,10 +324,10 @@ responses = {
             "all homeworks must be submitted in my new programming language, gerbscript",
             "FREE MONEY ON THIS GUY ^ YAAAAY",
             """```txt
-             _._     _,-'""`-._
-            (,-.`._,'(       |\\`-/|
-                `-.-' \\ )-`( , o o)
-                      `-    \\`_`"'- 
+ _._     _,-'""`-._
+(,-.`._,'(       |\\`-/|
+    `-.-' \\ )-`( , o o)
+          `-    \\`_`"'- 
             ```""",
             "i find you amusing",
             "free 100's for everyone!",

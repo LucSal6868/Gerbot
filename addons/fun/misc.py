@@ -247,32 +247,7 @@ async def pebble(message : discord.Message):
 
     # NO TARGET FOUND
     if not target:
-        data: dict = json_manager.get_json_var(message.channel.guild.id, pebble_key) or {}
-        user_pebbles : dict = data.get(str(message.author.id), {})
-        text = f"\n\nCOLLECTION:\n\n"
-
-        for key in pebble_types.keys():
-            if key == pebble_key_count_key:
-                continue
-
-            if set(pebble_types[key]) & set(user_pebbles):
-                text += f"**{key.upper()}** : \n"
-            else:
-                text += f"UNDISCOVERED : \n"
-
-            # LIST PEBBLES
-            for pebb in pebble_types[key]:
-                peb_count = user_pebbles.get(pebb, 0)
-                if peb_count != 0:
-                    text += f"| :{pebb}: = {peb_count} "
-                else:
-                    text += f"| :grey_question: "
-            text += "\n"
-
-
-        text += "\n@someone to gift them a pebble!\n"
-
-        await message.channel.send(text)
+        await message.reply("@ Someone to send them a pebble")
         return
 
     # TARGET IS SELF
@@ -313,6 +288,42 @@ async def pebble(message : discord.Message):
     except:
         pass
 
+
+async def collection(message : discord.Message):
+    target: discord.Member = message.author
+
+    match = re.search(r'<@(\d+)>', message.content.lower())
+    if match:
+        target = await message.channel.guild.fetch_member(match.group(1))
+
+    data: dict = json_manager.get_json_var(message.channel.guild.id, pebble_key) or {}
+    user_pebbles : dict = data.get(str(target.id), {})
+    text = f"\n\n<@{target.id}>'s COLLECTION:\n\n"
+
+    for key in pebble_types.keys():
+        if key == pebble_key_count_key:
+            continue
+
+        if set(pebble_types[key]) & set(user_pebbles):
+            text += f"**{key.upper()}** : \n"
+        else:
+            text += f"UNDISCOVERED : \n"
+
+        # LIST PEBBLES
+        for pebb in pebble_types[key]:
+            peb_count = user_pebbles.get(pebb, 0)
+            if peb_count != 0:
+                text += f"| :{pebb}: = {peb_count} "
+            else:
+                text += f"| :grey_question: "
+        text += "\n"
+
+
+    text += "\n@someone to gift them a pebble!\n"
+
+    await message.channel.send(text)
+
+
 # ////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -327,6 +338,8 @@ async def lock_in(message : discord.Message):
 
 
 # ////////////////////////////////////////////////////////////////////////////////////
+
+# DOXX
 
 import faker
 
@@ -380,3 +393,10 @@ MODEM JUMPS: {random.randint(1, 100)}
     """
 
     await message.channel.send(info)
+
+
+
+# ////////////////////////////////////////////////////////////////////////////////////
+# ////////////////////////////////////////////////////////////////////////////////////
+# ////////////////////////////////////////////////////////////////////////////////////
+# ////////////////////////////////////////////////////////////////////////////////////
