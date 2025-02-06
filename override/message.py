@@ -9,15 +9,15 @@ client: Client = Client(intents = intents)
 load_dotenv()
 TOKEN = str(os.getenv('DISCORD_TOKEN'))
 
-ch_id = 1272961650009575536
-msg : str = ""
+ch_id = 1335350412622168064
+msg : str = "say that to my face"
 
 @client.event
 async def on_ready()->None:
     channel = client.get_channel(ch_id)
 
     #await channel.send(msg)
-    await channel.send(file = File("hereturned.jpg"))
+    await channel.send(msg)
     await client.close()
 
 def main()->None:

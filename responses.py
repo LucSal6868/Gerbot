@@ -31,14 +31,18 @@ PEBBLE = functools.partial(misc.pebble, message=None)
 COLLECTION = functools.partial(misc.collection, message=None)
 LOCK_IN = functools.partial(misc.lock_in, message=None)
 DOXX = functools.partial(misc.doxx, message=None)
+QUOTE = functools.partial(misc.quote, message=None)
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
 
 # TRIGGER WORDS
 triggers = [
-    "bot",
-    "help",
+    "gerbot",
+    "gerber",
+    "gerbie",
+    "gerby",
+    "gerbing"
 ]
 
 # RESPONSES
@@ -71,12 +75,12 @@ responses = {
     "points" : POINTS,
     ("pinata", "piñata") : PINATA,
     "doxx" : DOXX,
+    ("quote", "clip that") : QUOTE,
 
     # /////////////////////////////////////////////////////////
 
     # RESPONSES
 
-    ("hello"): "HELLO",
     "time" : ("its gerbin time!!!!", "its gerbin time", "it's-a gerbin time", "it is the time to gerb", "its gerbin time!!1!", "gerbin time"),
     ("thank you", "thanks", "ty"): (
         "You owe me now",
@@ -206,7 +210,12 @@ responses = {
         discord.File("files/img/ha.jpg"),
         discord.File("files/img/jarvis.jpg"),
         discord.File("files/img/smug.jpg"),
+    ),
 
+    "audio" : (
+        discord.File("files/aud/bing.mp3"),
+        discord.File("files/aud/gerber_laugh.mp3"),
+        discord.File("files/aud/gerber_chainsaw.mp3"),
     ),
 
     "motivate" : (
@@ -256,8 +265,8 @@ responses = {
     **motivate** : gerbot may or may not say something motivational
     **doxx** : Win any argument
     **update** : See changelog and newest commands
-    
     **Lock in** : Avoid all distractions
+    **Quote** : chat, clip that
     """,
 
     ("update"): """
@@ -267,6 +276,7 @@ responses = {
     **Pinata** : Hit the pinata
     **doxx** : Win any argument
     **Collection** : view a users pebbles
+    **Quote** : chat, clip that
     
     # CHANGELOG:
     - Fixed that one HELLO bug
@@ -474,7 +484,6 @@ responses = {
             "the government will kill me for telling you this but whe",
             "There will be cake",
             "You will be baked and then there will be cake",
-            "play the stanley parable its one of my favorite games",
             "I'm afraid I can't do that, Dave",
             "btw you are being truman showed enjoy living with that knowledge",
             "october 14, 2025 october 14, 2025 october 14, 2025 october 14, 2025 october 14, 2025 october 14, 2025 october 14, 2025 october 14, 2025 "
@@ -488,5 +497,19 @@ responses = {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "^ This message will haunt me forever",
             "poopoopeepee",
+            "You are lucky you made it this far, but you wont survive my GER BLAST",
+            "I am going to do a muder to you",
+            "Nobody tell the real gerber i am here",
+            "Colors lab is due tonight",
+            "WE ARE ALREADY DONE WITH THE PROJECT IN LEINECKERS SECTION HAHA",
+            "I hate you the most",
+            "Hideous.",
+            "????????????????????????",
+            "Guys this is not a joke you do know there is a quiz tomorrow right?",
+            "Segmentation fault, core dumped",
+            "o i i i o a i i i i ",
+            "Cute puppy video -> <https://www.youtube.com/watch?v=xvFZjo5PgG0>",
+            discord.File("files/img/bubble/macdonals.gif"),
+            discord.File("files/img/uglybastard.png"),
         )
 }

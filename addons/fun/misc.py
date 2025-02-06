@@ -1,3 +1,5 @@
+from array import ArrayType
+
 import discord
 import random
 import re
@@ -324,6 +326,24 @@ async def collection(message : discord.Message):
     await message.channel.send(text)
 
 
+
+
+market_key : str
+
+async def market(message : discord.Message):
+    target: discord.Member = None
+
+    match = re.search(r'<@(\d+)>', message.content.lower())
+    if match:
+        target = await message.channel.guild.fetch_member(match.group(1))
+
+
+    return
+
+
+
+
+
 # ////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -397,6 +417,34 @@ MODEM JUMPS: {random.randint(1, 100)}
 
 
 # ////////////////////////////////////////////////////////////////////////////////////
+
+# QUOTE
+
+quote_key : str = "quotes"
+
+async def quote(message : discord.Message):
+
+    # IS RESPONSE
+    if message.reference is not None:
+        quote_message = await message.channel.fetch_message(message.reference.message_id)
+        quote = (quote_message).content
+
+        data : list = json_manager.get_json_var(message.channel.guild.id, quote_key) or []
+        data.append([quote_message.author.id, quote])
+        json_manager.set_json_var(message.channel.guild.id, quote_key, data)
+
+        await quote_message.reply("Gerbot will remember that.")
+
+    else:
+        data: list = json_manager.get_json_var(message.channel.guild.id, quote_key) or []
+        random_quote = random.choice(data or [[]])
+
+        if random_quote:
+            await message.channel.send('"' + random_quote[1] + f'" - <@{random_quote[0]}>')
+        else:
+            await message.channel.send("No quotes yet, reply to someones message and use the quote command to quote them")
+
+
 # ////////////////////////////////////////////////////////////////////////////////////
 # ////////////////////////////////////////////////////////////////////////////////////
 # ////////////////////////////////////////////////////////////////////////////////////
